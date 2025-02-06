@@ -10,24 +10,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "area_conhecimento" , schema = "remocao")
-public class AreaConhecimentoEntity implements Serializable {
+@Table(name = "cargo" , schema = "remocao")
+public class CargoEntity implements Serializable{
 	
 	private static final long serialVersionUID = 1L;	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_area_conhecimento")
-	private Long idAreaConhecimento;
+	@Column(name = "id_cargo")
+	private Long idCargo;
 	
 	@Column(name = "nome")
 	private String nome;
 
-	public Long getIdAreaConhecimento() {
-		return idAreaConhecimento;
+	public Long getIdCargo() {
+		return idCargo;
 	}
 
-	public void setIdAreaConhecimento(Long idAreaConhecimento) {
-		this.idAreaConhecimento = idAreaConhecimento;
+	public void setIdCargo(Long idCargo) {
+		this.idCargo = idCargo;
 	}
 
 	public String getNome() {
@@ -37,9 +37,8 @@ public class AreaConhecimentoEntity implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-    
-
+	
+	
 	
 	
 

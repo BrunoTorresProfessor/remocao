@@ -26,7 +26,7 @@
             <div class="mb-3">
 				<select class="form-select" id="area_conhecimento" name="area_conhecimento" required>
 				<option value="">Área de Conhecimento</option>
-				<option id="id" th:each="ac : ${areas_conhecimentos}" th:value="${ac.id}" th:text="${ac.nome}"></option>
+				<option id="idAreaConhecimento" th:each="ac : ${areas_conhecimentos}" th:value="${ac.idAreaConhecimento}" th:text="${ac.nome}"></option>
 				</select>				             
             </div>
 
@@ -34,9 +34,8 @@
             <div class="mb-3">
                 <select class="form-select" name="carga_horaria" required>
                     <option value="" disabled selected>Carga Horária</option>
-                    <option value="20">20 horas</option>
-                    <option value="40">40 horas</option>
-                    <option value="60">60 horas</option>
+                    <option id="IdCargaHoraria" th:each="c : ${cargas_horarias}" th:value="${c.IdCargaHoraria}" th:text="${c.cargaHoraria}"></option>
+          
                 </select>
             </div>
 
@@ -44,9 +43,7 @@
             <div class="mb-3">
                 <select class="form-select" name="cargo" required>
                     <option value="" disabled selected>Cargo</option>
-                    <option value="cargo1">Cargo 1</option>
-                    <option value="cargo2">Cargo 2</option>
-                    <option value="cargo3">Cargo 3</option>
+                    <option id="idCargo" th:each="c : ${cargos}" th:value="${c.idCargo}" th:text="${c.nome}"></option>
                 </select>
             </div>
 
@@ -54,9 +51,7 @@
             <div class="mb-3">
                 <select class="form-select" name="unidade" required>
                     <option value="" disabled selected>Unidade</option>
-                    <option value="unidade1">Unidade 1</option>
-                    <option value="unidade2">Unidade 2</option>
-                    <option value="unidade3">Unidade 3</option>
+                    <option id="idUnidade" th:each="u : ${unidades}" th:value="${u.idUnidade}" th:text="${u.nome}"></option>
                 </select>
             </div>
 
@@ -64,9 +59,7 @@
             <div class="mb-3">
                 <select class="form-select" name="vinculo" required>
                     <option value="" disabled selected>Vínculo</option>
-                    <option value="vinculo1">Vínculo 1</option>
-                    <option value="vinculo2">Vínculo 2</option>
-                    <option value="vinculo3">Vínculo 3</option>
+                    <option id="idVinculo" th:each="v : ${vinculos}" th:value="${v.idVinculo}" th:text="${v.nome}"></option>
                 </select>
             </div>
 
