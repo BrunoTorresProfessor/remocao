@@ -1,0 +1,183 @@
+  <meta charset="utf-8"/>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="background-image: linear-gradient(#00420c,#61b06f);">
+ <div class="container">
+	<a class="navbar-brand" href="/"><img src="/images/logo-ifrj.png" Style="width:160px"/> </a> 
+	
+	 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse " id="navbarCollapse">
+		<ul class="navbar-nav mr-auto">							
+			<!-- Dropdown Candidatura -->
+			<li class="nav-item dropdown" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_TAE','CANDIDATO_DOCENTE')">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Candidatura
+				</a>
+				<div class="dropdown-menu">
+				 <!-- Mostra o item de menu apenas se o usuário logado possuir o perfil de candidato -->
+				
+				    <a class="dropdown-item" href="/dados_pessoais/listar">Confirmar Dados Pessoais</a>      				       
+				    <a class="dropdown-item" href="/candidatura/listar_disciplinas" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_DOCENTE')">Cadastrar Disciplina</a>        			   	
+				    <a class="dropdown-item" href="/candidatura/realizar_candidatura">Realizar Candidatura</a>      		       			
+  				<a class="dropdown-item" href="/candidatura/acompanhar_candidatura">Acompanhar Candidatura</a>   
+  				<!--<a class="dropdown-item" href="/candidatura/meus_recursos">Meus Recursos</a>-->  
+  		
+				</div>
+			</li>			
+		    <!-- Termina Dropdown Candidatura -->
+		    
+		    <!-- Dropdown Consultas -->
+			<li class="nav-item dropdown" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_TAE','CANDIDATO_DOCENTE','ADMIN_GERAL','ADMIN')"> 
+			
+			
+			
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Consultas
+				</a>
+				<div class="dropdown-menu">
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/consultas/listar_disciplinas" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_DOCENTE','ADMIN_GERAL','ADMIN')">Disciplinas por Campus</a>
+				   </div>	
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/templates/consultas/rellistagemgeralcandidatos" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_TAE','CANDIDATO_DOCENTE','ADMIN_GERAL','ADMIN')">Listagem Geral de Candidatos</a>
+				   </div>
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/templates/consultas/relcandidatossaindounidade" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL','ADMIN')">Listagem de Candidatos Saindo da Unidade</a>
+				   </div>		
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/templates/consultas/relcandidatosentrandounidade" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL','ADMIN')">Listagem de Candidatos Entrando na Unidade</a>
+				   </div>			
+  				
+				</div>
+			</li>			
+		    <!-- Termina Dropdown Consultas -->
+		    
+
+		     <!-- Começa Documentos -->
+		   <li class="nav-item dropdown" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','CANDIDATO_TAE','CANDIDATO_DOCENTE','ADMIN_GERAL','ADMIN')">
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Documentos
+				</a>
+				<div class="dropdown-menu">
+				 <!-- Mostra o item de menu apenas se o usuário logado possuir o perfil de candidato -->
+				
+				    <a class="dropdown-item" href="/documentos/instrucao_normativa_2022.pdf" target="_BLANK">Instrução Normativa</a>   
+				    <a class="dropdown-item" href="/documentos/portaria_bir.pdf" target="_BLANK">Portaria BIR</a>   			   	
+				    <a class="dropdown-item" href="/documentos/portaria_comissao_2022.pdf" target="_BLANK">Portaria da Comissão</a>      			
+  	        		
+				</div>
+			</li>		
+		    <!-- Termina Documentos -->
+		    
+			<!-- Dropdown Avaliação -->
+			<!-- <li class="nav-item dropdown" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL')" > 
+			
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Avaliação
+				</a>
+				<div class="dropdown-menu">
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/avaliacao/listar_eventos_cronograma" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL')">Cronograma</a>
+				   </div>
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/avaliacao_negar_remocao/listar_candidatos_taes" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL')">Pré-avaliação Candidaturas TAE's/Docentes (Novo)</a>
+				   </div>
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/avaliacao/listar_candidatos_taes" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL')">Avaliar Candidaturas TAE's</a>
+				   </div>	
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/avaliacao/listar_candidatos_docentes" sec:authorize="hasAnyRole('DIRETOR_CAMPUS','ADMIN_GERAL')">Avaliar Candidaturas Docentes</a>
+				   </div>	
+					
+  				
+				</div>
+			</li>		 -->	
+		    <!-- Termina Dropdown Avaliação -->
+		    
+		    <!-- Dropdown Administração -->
+			<!--<li class="nav-item dropdown" sec:authorize="hasAnyRole('ADMIN_GERAL','DIRETOR_CAMPUS')"> 
+			
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Manifestação
+				</a>
+				<div class="dropdown-menu">
+				  
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/recursos/listar_permutas">Interpor Manifestação</a>
+				   </div>
+				   </div>
+				</li>-->
+		    
+		    
+		    <!-- Dropdown Administração -->
+			<li class="nav-item dropdown" sec:authorize="hasAnyRole('ADMIN_GERAL','ADMIN')"> 
+			
+				<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+  			Administração
+				</a>
+				<div class="dropdown-menu">
+				  
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/listar_email">Lista de Email</a>
+				   </div>
+				  
+			   <div class="nav-item">
+					<a class="dropdown-item" href="/cronograma/listar">Cronograma</a>
+				   </div>
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/bloquear_candidaturas">Bloquear Candidaturas/Desistências</a>
+				   </div>
+				   
+				    <div class="nav-item" sec:authorize="hasAnyRole('ADMIN_GERAL')">
+  				<a class="dropdown-item" href="/usuarios/listar" >Usuários</a>
+  				</div>
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/gerar_extracao">Gerar Extração</a>
+				   </div>
+			   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/permuta_triangulacao">Permuta / Triangulação (Taes)</a>
+				   </div>
+				   <div class="nav-item">
+                  <a class="dropdown-item" href="/administracao/permuta_triangulacao_docente">Permuta / Triangulação (Docentes)</a>
+                 </div>
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/listar_recursos">Avaliar Recursos/Manifestações</a>
+				   </div>
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/homologar_remocoes">Homologar Remoções (Em lote)</a>
+				   </div>
+				   
+				   
+				   <div class="nav-item">
+					<a class="dropdown-item" href="/administracao/realizar_remocao_servidor">Realizar Remoção Servidor (Individual)</a>
+				   </div>
+				     
+			
+  				
+				</div>
+			</li>		
+		    <!-- Começa o menu Suporte -->       			
+			
+				<a class="nav-link" href="/suporte/suporte" id="navbardrop" >
+  			Suporte
+				</a>      				
+		    <!-- Termina o menu Suporte -->
+		    
+	
+			
+		</ul>
+		<form th:action="@{/logout}" method="post" class="navbar-form navbar-right">
+			<button type="submit" class="btn btn-default">
+				Sair
+			</button>
+		</form>
+	</div>
+</div>
+</nav>
+<br><br>
+
