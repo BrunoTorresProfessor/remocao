@@ -28,8 +28,9 @@ public class SecSecurityConfig {
 	 
 	    http.authorizeHttpRequests(
 	            auth -> auth	            
-	            .requestMatchers("/esqueci_minha_senha", "/cadastre_se").permitAll() 
-	            .requestMatchers("/acompanhar_candidatura").hasAnyAuthority("servidor","administrador")	           
+	            .requestMatchers("/esqueci_minha_senha", "/cadastre_se", "/recuperar_senha").permitAll() 
+	            .requestMatchers("/acompanhar_candidatura").hasAnyAuthority("servidor","administrador")	      
+	            .requestMatchers("/cadastrar").hasAnyAuthority("servidor","administrador")	       
 	            .anyRequest().authenticated() 
 	           )
 	            .formLogin(formLogin -> formLogin	   

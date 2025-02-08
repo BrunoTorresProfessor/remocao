@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +9,22 @@
 <body class="bg-primary d-flex justify-content-center align-items-center vh-100">
 
     <div class="bg-white p-5 rounded shadow-sm w-100" style="max-width: 600px;">
-        <!--<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/FAETEC.png" alt="FAETEC Logo" class="faetec-logo mb-3">-->
         <h3 class="mb-4 text-center">Cadastro FAETEC</h3>
-        <form th:action="@{/cadastrar}" method="post" th:object="${usuarioEntity}">
+		<form name="cadastrar" method="POST" th:action="@{/cadastrar}" th:object="${usuarioEntity}">
+      
             <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Nome completo" name="name" required>
+                <input type="text" class="form-control" placeholder="Nome completo" name="nome" required>
             </div>
             <div class="mb-3">
                 <input type="email" class="form-control" placeholder="E-mail da FAETEC" name="email" required>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Senha" name="password" required>
+                <input type="password" class="form-control" placeholder="Senha" name="senha" required>
             </div>
 
             <!-- Select para área do conhecimento -->
             <div class="mb-3">
-				<select class="form-select" id="area_conhecimento" name="area_conhecimento" required>
+				<select class="form-select" id="AreaConhecimentoEntity" name="AreaConhecimentoEntity" required>
 				<option value="">Área de Conhecimento</option>
 				<option id="idAreaConhecimento" th:each="ac : ${areas_conhecimentos}" th:value="${ac.idAreaConhecimento}" th:text="${ac.nome}"></option>
 				</select>				             
