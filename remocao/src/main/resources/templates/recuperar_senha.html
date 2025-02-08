@@ -12,7 +12,9 @@
         <h3 class="mb-4 text-center">Recuperar Senha</h3>
 		<form name="recuperar_senha"  th:action="@{/recuperar_senha}" method="POST" th:object="${usuarioEntity}">
       
-
+			<!-- Retorna uma mensagem na tela para o usuário após a operação -->
+			<div class="alert alert-success" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+			
             <div class="mb-3">
                 <input type="email" class="form-control" placeholder="E-mail" name="email" required>
             </div>

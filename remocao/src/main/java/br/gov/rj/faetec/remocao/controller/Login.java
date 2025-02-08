@@ -29,12 +29,25 @@ public class Login {
          	return "login";  	
     	    	
     }
+    @GetMapping(value="/sair")
+    public String sair() { 	
+    	   
+         	return "login";  	
+    	    	
+    }
+    @GetMapping(value="/contato")
+    public String contato() { 	
+    	   
+         	return "contato";  	
+    	    	
+    }
     @RequestMapping(value = "/postlogin", method = RequestMethod.POST)
     public String postLogin(Model model, HttpSession session) throws Exception {       
        
     	System.out.println("Entrei");
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String login = auth.getName(); //recupera o login do usuario logado
+        session.setAttribute("email", login); 
         
         return "/candidatura/acompanhar_candidatura";
 
