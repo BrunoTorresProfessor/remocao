@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-public class Login {
+public class LoginController {
 	
 	@GetMapping("/")
     public String home(HttpServletRequest request) {        
@@ -49,7 +49,7 @@ public class Login {
         String login = auth.getName(); //recupera o login do usuario logado
         session.setAttribute("email", login); 
         
-        return "/candidatura/acompanhar_candidatura";
+        return "/home";
 
     }   
 

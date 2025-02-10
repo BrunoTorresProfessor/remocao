@@ -1,5 +1,6 @@
 package br.gov.rj.faetec.remocao.service;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import br.gov.rj.faetec.remocao.email.Mailer;
 import br.gov.rj.faetec.remocao.email.Mensagem;
+import br.gov.rj.faetec.remocao.entity.UnidadeEntity;
 import br.gov.rj.faetec.remocao.entity.UsuarioEntity;
+import br.gov.rj.faetec.remocao.repository.CandidaturaRepository;
 import br.gov.rj.faetec.remocao.repository.UsuarioRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	CandidaturaRepository candidaturaRepository;
 	
 	@Autowired
 	private Mailer mailer;		
@@ -71,6 +77,29 @@ public class UsuarioServiceImpl implements UsuarioService {
 		senha[x] = chart[rdm.nextInt(chartLenght)];
 
 		return new String(senha);
+	}
+
+	@Override
+	public String realizarCandidatura(UnidadeEntity unidadeEntity, String email) throws Exception {
+		
+		try 
+		{
+			   UsuarioEntity usuarioEntity = new UsuarioEntity();
+			   usuarioEntity = this.usuarioRepository.getOneByEmail(email);
+			   Timestamp dataDeHoje = new Timestamp(System.currentTimeMillis());
+
+
+			   candidaturaRepository.realizarCandidatura(usuarioEntity.getIdUsuario(), unidadeEntity.getIdUnidade(), dataDeHoje);
+			   
+			
+		} 
+		catch (Exception e) {
+			
+			return e.getMessage();
+			
+		}
+		
+		return this.mensagem;
 	}
 
 }

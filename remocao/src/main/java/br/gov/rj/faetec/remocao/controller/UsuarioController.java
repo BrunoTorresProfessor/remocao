@@ -1,10 +1,6 @@
 package br.gov.rj.faetec.remocao.controller;
 
-import java.util.Arrays;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,8 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.gov.rj.faetec.remocao.email.Mailer;
-import br.gov.rj.faetec.remocao.email.Mensagem;
+
 import br.gov.rj.faetec.remocao.entity.UsuarioEntity;
 import br.gov.rj.faetec.remocao.repository.AreaConhecimentoRepository;
 import br.gov.rj.faetec.remocao.repository.CargaHorariaRepository;
@@ -49,11 +44,8 @@ public class UsuarioController {
 	  UnidadeRepository unidadeRepository;
 	  
 	  @Autowired
-	  VinculoRepository vinculoRepository;
-	  
-	  @Autowired
-	  private Mailer mailer;	
-	  
+	  VinculoRepository vinculoRepository;	  
+  
 	  private String mensagem;
 	  
 	  private String email;
@@ -76,7 +68,7 @@ public class UsuarioController {
 	    		RedirectAttributes atributes
 	    		) throws Exception 
 		{ 			
-			System.out.println("Entrei");
+			
 					System.out.println("Email: " + usuarioEntity.getEmail());
 					System.out.println(usuarioEntity.getNome());
 					System.out.println(usuarioEntity.getAreaConhecimentoEntity().getNome());
@@ -98,7 +90,7 @@ public class UsuarioController {
 			
 	        return "recuperar_senha";  	
 	    	    	
-	    }
+	    }	
 		@PostMapping({"/recuperar_senha"})
 	    public ModelAndView recuperarSenhaEmail(UsuarioEntity usuario,Model model,RedirectAttributes atributes) throws Exception { 			
 		
@@ -110,12 +102,7 @@ public class UsuarioController {
 	        return mv;
 	    	    	
 	    }
-	    @GetMapping(value="/candidatura/acompanhar_candidatura")
-	    public String contato() { 	
-	    	   
-	        return "/candidatura/acompanhar_candidatura";  	
-	    	    	
-	    }
+	
 		  @GetMapping(value="/candidatura/meus_dados")
 		  public String meusDados(ModelMap model, HttpSession session) { 	
 			  
