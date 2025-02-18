@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.gov.rj.faetec.remocao.entity.UnidadeEntity;
-import br.gov.rj.faetec.remocao.repository.CandidaturaRepository;
 import br.gov.rj.faetec.remocao.repository.UnidadeRepository;
 import br.gov.rj.faetec.remocao.repository.UsuarioRepository;
 import br.gov.rj.faetec.remocao.service.CandidaturaService;
@@ -57,8 +56,9 @@ public class CandidaturaController {
 		    return "/candidatura/acompanhar_candidatura"; 
     }
 	@GetMapping(value="/candidatura/permutas")
-    public String permutas(ModelMap model) { 	
-		model.addAttribute("candidaturas", usuarioRepository.findAll());
+    public String permutas(ModelMap model, HttpSession session) { 	
+		email = (String)session.getAttribute("email"); 	
+		model.addAttribute("candidaturas", usuarioService.listarPermutasUsuario(email));
         return "/candidatura/permutas";  	
     	    	
     }

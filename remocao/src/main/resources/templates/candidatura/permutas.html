@@ -18,18 +18,31 @@
 
 	<!-- Mostra o histórico de candidaturas apenas se existir alguma informação -->
 	<div th:unless="${#lists.isEmpty(candidaturas)}">			
-		<h5>Possibilidades de Permutasxz</h5>
+		<h5>Possibilidades de Permutas</h5>
 		 <table id="tabela_ajax" class="table table-striped" style="width:100%">
 			<thead>
 				<tr>
+					<th>Candidato</th>
+					<th>Unidade de Origem</th>
 					<th>Unidade de Interesse</th>
-					<th>Data de Candidatura</th>						
+					<th>Email</th>	
+					<th>Cargo</th>	 
+					<th>Área</th>	
+					<th>Carga</th>
+					<th>Vínculo</th>
+									
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="c : ${candidaturas}">
+					<td th:text="${c.nome}"></td>
+					<td></td>
 					<td th:text="${c.unidadeEntity.nome}"></td>
 					<td th:text="${c.email}"></td>
+					<td th:text="${c.cargoEntity.nome}"></td>
+					<td th:text="${c.areaConhecimentoEntity.nome}"></td>
+					<td th:text="${c.cargaHorariaEntity.cargaHoraria}"></td>
+					<td th:text="${c.vinculoEntity.nome}"></td>
 				</tr>
 			</tbody>
 		</table>

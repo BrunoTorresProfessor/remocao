@@ -2,6 +2,7 @@ package br.gov.rj.faetec.remocao.service;
 
 import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 		
 		return this.mensagem;
+	}
+
+	@Override
+	public List<UsuarioEntity> listarPermutasUsuario(String email) {
+		UsuarioEntity usuarioEntity = new UsuarioEntity();
+		usuarioEntity = this.usuarioRepository.getOneByEmail(email);
+		
+		return usuarioRepository.listarPermutasUsuario(usuarioEntity.getIdUsuario());
 	}
 
 }
