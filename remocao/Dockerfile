@@ -21,7 +21,7 @@ FROM openjdk:21-jdk-slim
 EXPOSE 8080
 
 # Copia o arquivo JAR gerado na etapa de build
-COPY --from=build /target/spring-deploy-render-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /target/remocao-0.0.1-SNAPSHOT.jar app.jar
 
 # Comando de inicialização
 ENTRYPOINT ["java", "-jar", "app.jar"]
