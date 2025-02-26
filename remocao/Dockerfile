@@ -1,27 +1,16 @@
-# Etapa de construção
-FROM ubuntu:latest AS build
+FROM eclipse-temurin:21-jdk
 
-# Atualiza pacotes e instala o OpenJDK 21 e Maven
-RUN apt-get update && apt-get install -y openjdk-21-jdk maven
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
 
-# Define a variável de ambiente JAVA_HOME
-ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-ENV PATH="${JAVA_HOME}/bin:${PATH}"
-
-# Copia o código-fonte para o contêiner
-COPY . .
+# Copia os arquivos de configuração e código-fonte para o container
+COPY . /app
 
 # Compila o projeto usando Maven
-RUN mvn clean package -DskipTests
+RUN ./mvnw package -DskipTests
 
-# Etapa de execução
-FROM openjdk:21-jdk-slim
-
-# Expõe a porta 8080
+# Expõe a porta padrão do Spring Boot
 EXPOSE 8080
 
-# Copia o arquivo JAR gerado na etapa de build
-COPY --from=build /target/remocao-0.0.1-SNAPSHOT.jar app.jar
-
-# Comando de inicialização
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Comando para executar a aplicação
+CMD ["java", "-jar", "target/remocao-0.0.1-SNAPSHOT.jar"]
