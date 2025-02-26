@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y maven
 WORKDIR /app
 
 # Copy the pom.xml and source files
-COPY ../pom.xml /app/
-COPY ../src /app/src
+COPY /remocao/pom.xml /app/
+COPY /remocao/src /app/src
 
 # Run Maven build
 RUN mvn clean package -DskipTests
