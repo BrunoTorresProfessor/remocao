@@ -5,13 +5,13 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+//import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
-@PropertySource("classpath:mail.properties")
+//@PropertySource("classpath:remocaomail.properties")
 public class MailConfig {
 	
 	@Autowired
@@ -21,10 +21,10 @@ public class MailConfig {
 	public JavaMailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		
-		mailSender.setHost(this.env.getProperty("spring.mail.host"));
-		mailSender.setPort(((Integer)this.env.getProperty("spring.mail.port", Integer.class)).intValue());
-		mailSender.setUsername(this.env.getProperty("spring.mail.username"));
-		mailSender.setPassword(this.env.getProperty("spring.mail.password"));
+		mailSender.setHost(this.env.getProperty("MAIL_HOST"));
+		mailSender.setPort(((Integer)this.env.getProperty("MAIL_PORT", Integer.class)).intValue());
+		mailSender.setUsername(this.env.getProperty("MAIL_USERNAME"));
+		mailSender.setPassword(this.env.getProperty("MAIL_PASSWORD"));
 		
 		Properties props = new Properties();
 		props.put("mail.transport.protocol", "smtp");
