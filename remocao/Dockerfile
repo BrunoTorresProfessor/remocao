@@ -1,20 +1,17 @@
-# Usa a imagem do JDK 21
 FROM eclipse-temurin:21-jdk
 
-# Define o diretório de trabalho
 WORKDIR /app
+COPY . .
 
-# Copia os arquivos do projeto para o contêiner
-COPY . /app
+# If using Maven wrapper
+RUN ./mvnw clean package -X -DskipTests
 
-# Dá permissão de execução ao Maven Wrapper
-RUN chmod +x /app/mvnw
 
-# Compila o projeto com Maven
-RUN /app/mvnw clean package -DskipTests
+# If using the system's Maven installation
+#RUN mvn clean package -X -DskipTests
 
-# Expõe a porta do Spring Boot
+# Exposes the default Spring Boot port
 EXPOSE 8080
 
-# Comando para executar a aplicação
-CMD ["java", "-jar", "/app/target/remocao-0.0.1-SNAPSHOT.jar"]
+# Command to run the Spring Boot application
+CMD ["java", "-jar", "target/remocao-0.0.1-SNAPSHOT.jar"]
