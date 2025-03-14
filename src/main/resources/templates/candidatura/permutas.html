@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/cabecalho}">
+<meta charset="ISO-8859-1">
+<title>Permutas</title>
+</head>
+<body>
+<!-- Importa o menu padrão do sistema -->
+<div th:insert="~{layout/menu}"></div>
+
+<!-- Conteúdo Principal -->
+<div class="container flex-grow-1 py-5">
+    <h3 class="mb-4">Permutas</h3> 
+	<!-- Começa Aqui -->
+	<div th:if="${candidaturas.empty}">
+		<div>Não encontramos nenhum servidor compatível com a sua candidatura.</div>
+	</div>
+
+	<!-- Mostra o histórico de candidaturas apenas se existir alguma informação -->
+	<div th:unless="${#lists.isEmpty(candidaturas)}">			
+		<h5>Possibilidades de Permutas</h5>
+		 <table id="tabela_ajax" class="table table-striped" style="width:100%">
+			<thead>
+				<tr>
+					<th>Candidato</th>
+					<th>Unidade de Origem</th>
+					<th>Unidade de Interesse</th>
+					<th>Email</th>	
+					<th>Cargo</th>	 
+					<th>Área</th>	
+					<th>Carga</th>
+					<th>Vínculo</th>
+									
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${candidaturas}">
+					<td th:text="${c.nome}"></td>
+					<td></td>
+					<td th:text="${c.unidadeEntity.nome}"></td>
+					<td th:text="${c.email}"></td>
+					<td th:text="${c.cargoEntity.nome}"></td>
+					<td th:text="${c.areaConhecimentoEntity.nome}"></td>
+					<td th:text="${c.cargaHorariaEntity.cargaHoraria}"></td>
+					<td th:text="${c.vinculoEntity.nome}"></td>
+				</tr>
+			</tbody>
+		</table>
+			<script>
+				$(document).ready( function (){
+			    var table = new DataTable('#tabela_ajax', {
+			    language: {
+			        url: 'https://cdn.datatables.net/plug-ins/2.0.2/i18n/pt-BR.json',
+			    },
+			});
+			
+			} );
+			</script>
+	</div>
+
+	<!-- Termina Aqui -->
+</div>
+
+    
+
+
+
+<!-- Importa o rodape padrão do sistema -->
+<div th:insert="~{layout/rodape}"></div>
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+docker build -t remocao-image .
+
+docker run -p 8080:8080 -e DB_URL="jdbc:postgresql://host.docker.internal:5432/remocao?currentSchema=remocao" -e DB_PASSWORD="jk123456" -e DB_USERNAME="postgres" -e MAIL_HOST="smtp.gmail.com" -e MAIL_PASSWORD="coloque sua senha" -e MAIL_PORT="587" -e MAIL_USERNAME="brunotorresprofessor@gmail.com" remocao-image
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{layout/cabecalho}">
+    <meta charset="UTF-8">
+    <title>Cadastro - FAETEC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column vh-100">
+
+    <!-- Importa o menu padrão do sistema -->
+    <div th:insert="~{layout/menu}"></div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container flex-grow-1 py-5">
+        <h3 class="mb-4">Meus Dados</h3>
+
+        <!-- Formulário de Cadastro -->
+     
+            <form th:action="@{/cadastrar}" method="post">
+                
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome completo</label>
+                    <input type="text" class="form-control" id="nome" name="nome" th:field="${usuario.nome}" required>
+                </div>
+
+                <!-- E-mail -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail da FAETEC</label>
+                    <input type="email" class="form-control" id="email" name="email" th:field="${usuario.email}" required >
+                </div>
+
+             
+                <!-- Select para Área de Conhecimento -->
+                <div class="mb-3">
+                    <label for="AreaConhecimentoEntity" class="form-label">Área de Conhecimento</label>
+                    <select class="form-select" id="AreaConhecimentoEntity" name="AreaConhecimentoEntity" required>
+                        <option value="">Selecione uma área de conhecimento</option>
+                        <option th:each="ac : ${areas_conhecimentos}" th:value="${ac.idAreaConhecimento}" th:text="${ac.nome}" 
+						th:selected="(${ac.idAreaConhecimento} == ${usuario.AreaConhecimentoEntity.idAreaConhecimento})"></option>
+						
+                    </select>
+                </div>
+
+                <!-- Select para Carga Horária -->
+                <div class="mb-3">
+                    <label for="carga_horaria" class="form-label">Carga Horária</label>
+                    <select class="form-select" id="carga_horaria" name="carga_horaria" required>
+                        <option value="" disabled selected>Selecione a carga horária</option>
+                        <option th:each="c : ${cargas_horarias}" th:value="${c.IdCargaHoraria}" th:text="${c.cargaHoraria}" 
+						th:selected="(${c.IdCargaHoraria} == ${usuario.cargaHorariaEntity.IdCargaHoraria})"></option>
+                    </select>
+                </div>
+
+                <!-- Select para Cargo -->
+                <div class="mb-3">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <select class="form-select" id="cargo" name="cargo" required>
+                        <option value="" disabled selected>Selecione um cargo</option>
+                        <option th:each="c : ${cargos}" th:value="${c.idCargo}" th:text="${c.nome}" 
+						th:selected="(${c.idCargo} == ${usuario.CargoEntity.idCargo})"></option>
+                    </select>
+                </div>
+
+                <!-- Select para Unidade -->
+                <div class="mb-3">
+                    <label for="unidade" class="form-label">Unidade</label>
+                    <select class="form-select" id="unidade" name="unidade" required>
+                        <option value="" disabled selected>Selecione uma unidade</option>
+                        <option th:each="u : ${unidades}" th:value="${u.idUnidade}" th:text="${u.nome}"
+						th:selected="(${u.idUnidade} == ${usuario.UnidadeEntity.idUnidade})"></option>
+                    </select>
+                </div>
+
+                <!-- Select para Vínculo -->
+                <div class="mb-3">
+                    <label for="vinculo" class="form-label">Vínculo</label>
+                    <select class="form-select" id="vinculo" name="vinculo" required>
+                        <option value="" disabled selected>Selecione o vínculo</option>
+                        <option th:each="v : ${vinculos}" th:value="${v.idVinculo}" th:text="${v.nome}"
+						th:selected="(${v.idVinculo} == ${usuario.VinculoEntity.idVinculo})"></option>
+                    </select>
+                </div>
+
+                <!-- Botão de Envio -->
+                <button type="submit" class="btn btn-primary w-100">Alterar</button>
+            </form>
+ 
+    </div>
+
+    <!-- Importa o rodapé padrão do sistema -->
+    <div th:insert="~{layout/rodape}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
